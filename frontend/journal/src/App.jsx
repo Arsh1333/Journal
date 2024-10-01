@@ -4,6 +4,7 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import Journal from "./components/Journal";
 import Register from "./components/Register";
+import Display from "./components/Display";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/journal" element={<Journal />} />
+        <Route path="/display" element={<Display />} />
       </Routes>
     </Router>
   );

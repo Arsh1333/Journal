@@ -16,6 +16,8 @@ const Register = () => {
       })
       .then((response) => {
         console.log(response);
+        console.log("User created successfully");
+        window.location.href = "/login";
       })
       .catch((err) => {
         console.log(err);
