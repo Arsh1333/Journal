@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import Navbar from "./Navbar";
 import axios from "axios";
+import Display from "./Display";
 
 const Journal = () => {
   const [content, setContent] = useState("");
@@ -7,7 +9,7 @@ const Journal = () => {
   const [successMessage, setSuccessMessage] = useState("");
 
   const handleAdd = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     const token = localStorage.getItem("token");
     if (!token) {
       setError("You must be logged in to add a post");
@@ -26,7 +28,7 @@ const Journal = () => {
       setSuccessMessage("Post added successfully!");
       setContent(""); // Clear the form
       setError(null);
-      window.location.href = "/display";
+      // window.location.href = "/display";
     } catch (error) {
       console.log(error);
     }
@@ -62,6 +64,7 @@ const Journal = () => {
         )}
         {error && <p className="mt-4 text-red-600 text-center">{error}</p>}
       </div>
+      <Display></Display>
     </div>
   );
 };
