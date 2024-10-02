@@ -37,6 +37,22 @@ const Display = () => {
     fetchPosts();
   }, []); // The empty array makes this effect run only once, when the component is mounted
 
+  const handleDelete = async (postId) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:5000/api/posts/${postId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`, // Add token to headers
+          },
+        }
+      );
+      setPosts(posts.filter((post) => post._id !== postId));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="posts-list">
       <h2>Journal Entries</h2>
@@ -59,6 +75,12 @@ const Display = () => {
                 <strong>Date:</strong>{" "}
                 {new Date(post.date).toLocaleDateString()}
               </p>
+              <button
+                onClick={() => handleDelete(post._id)}
+                style={{ color: "red" }}
+              >
+                Delete
+              </button>
             </li>
           ))}
         </ul>
