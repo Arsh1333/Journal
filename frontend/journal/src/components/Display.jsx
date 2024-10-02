@@ -54,30 +54,33 @@ const Display = () => {
   };
 
   return (
-    <div className="posts-list">
-      <h2>Journal Entries</h2>
+    <div className="max-w-4xl mx-auto my-10 p-6 bg-gray-50 rounded-lg shadow-md">
+      <h2 className="text-3xl font-semibold text-gray-800 mb-6 text-center">
+        Journal Entries
+      </h2>
 
       {/* Display error if it exists */}
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p className="text-red-600 text-center mb-4">{error}</p>}
 
       {/* Display posts if fetched successfully */}
       {posts.length > 0 ? (
-        <ul>
+        <ul className="space-y-4">
           {posts.map((post) => (
-            <li key={post._id} className="post">
-              <p>
-                <strong>Content:</strong> {post.content}
+            <li
+              key={post._id}
+              className="bg-white p-4 rounded-lg shadow-sm border border-gray-200"
+            >
+              <p className="mb-2">
+                <strong className="text-gray-700">Content:</strong>{" "}
+                {post.content}
               </p>
-              {/* <p>
-                <strong>Owner ID:</strong> {post.owner}
-              </p> */}
-              <p>
-                <strong>Date:</strong>{" "}
+              <p className="mb-4">
+                <strong className="text-gray-700">Date:</strong>{" "}
                 {new Date(post.date).toLocaleDateString()}
               </p>
               <button
                 onClick={() => handleDelete(post._id)}
-                style={{ color: "red" }}
+                className="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition-colors"
               >
                 Delete
               </button>
@@ -85,7 +88,7 @@ const Display = () => {
           ))}
         </ul>
       ) : (
-        <p>No posts available</p>
+        <p className="text-gray-500 text-center">No posts available</p>
       )}
     </div>
   );
