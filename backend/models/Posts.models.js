@@ -10,6 +10,10 @@ const postSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "User",
     },
+    sentimentScore: {
+      type: String,
+      required: true,
+    },
     date: {
       type: Date,
       default: Date.now,

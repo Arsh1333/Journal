@@ -4,6 +4,7 @@ import axios from "axios";
 const Display = () => {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
+  const [sentiment, setSentiment] = useState("");
 
   useEffect(() => {
     // Fetch posts when the component is mounted
@@ -54,7 +55,7 @@ const Display = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto my-10 p-6 bg-gray-50 rounded-lg shadow-md">
+    <div className="max-w-4xl ml-[14%] mx-auto my-10 p-6 bg-gray-50 rounded-lg shadow-md">
       <h2 className="text-3xl font-semibold text-gray-800 mb-6 text-center">
         Journal Entries
       </h2>
@@ -74,6 +75,29 @@ const Display = () => {
                 <strong className="text-gray-700">Content:</strong>{" "}
                 {post.content}
               </p>
+              <p className="mb-2">
+                <strong className="text-gray-700">Sentiment-Score:</strong>{" "}
+                {post.sentimentScore}
+              </p>
+              <p className="mb-2">
+                <strong className="text-gray-700">Sentiment:</strong>{" "}
+                <span
+                  className={
+                    post.sentimentScore > 0
+                      ? "text-green-600" // Positive sentiment
+                      : post.sentimentScore == 0
+                      ? "text-gray-600" // Neutral sentiment
+                      : "text-red-600" // Negative sentiment
+                  }
+                >
+                  {post.sentimentScore > 0
+                    ? "positive"
+                    : post.sentimentScore == 0
+                    ? "neutral"
+                    : "negative"}
+                </span>
+              </p>
+
               <p className="mb-4">
                 <strong className="text-gray-700">Date:</strong>{" "}
                 {new Date(post.date).toLocaleDateString()}

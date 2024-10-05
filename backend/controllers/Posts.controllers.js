@@ -1,14 +1,18 @@
 import mongoose from "mongoose";
 import { Posts } from "../models/Posts.models.js";
 import { authenticateToken } from "../middleware/authenticate.middleware.js";
+import Sentiment from "sentiment";
 
 const addPost = async (req, res) => {
   const { content } = req.body;
   // console.log(authenticateToken);
   // console.log(req);
+  const sentiment = new Sentiment();
+  let sentimentResult = sentiment.analyze(content);
   const newPost = new Posts({
     content: content,
     owner: req.user._id,
+    sentimentScore: sentimentResult.score,
     date: Date.now(),
   });
   newPost
