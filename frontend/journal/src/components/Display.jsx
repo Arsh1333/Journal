@@ -18,11 +18,14 @@ const Display = () => {
 
       try {
         // Make a GET request to your API to fetch the posts
-        const response = await axios.get("http://localhost:5000/api/posts", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axios.get(
+          "https://journal-3vzj.onrender.com/api/posts",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
         // Update the posts state with the response data
         setPosts(response.data);
@@ -41,7 +44,7 @@ const Display = () => {
   const handleDelete = async (postId) => {
     try {
       const response = await axios.delete(
-        `http://localhost:5000/api/posts/${postId}`,
+        `https://journal-3vzj.onrender.com/api/posts/${postId}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`, // Add token to headers
@@ -91,10 +94,10 @@ const Display = () => {
                   }
                 >
                   {post.sentimentScore > 0
-                    ? "positive"
+                    ? "positive 😊"
                     : post.sentimentScore == 0
-                    ? "neutral"
-                    : "negative"}
+                    ? "neutral 😐"
+                    : "negative ☹️"}
                 </span>
               </p>
 

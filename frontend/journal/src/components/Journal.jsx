@@ -17,7 +17,7 @@ const Journal = () => {
     }
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/posts/add",
+        "https://journal-3vzj.onrender.com/api/posts/add",
         { content },
         {
           headers: {

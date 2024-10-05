@@ -9,7 +9,7 @@ const Register = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     const response = await axios
-      .post("http://localhost:5000/api/users/register", {
+      .post("https://journal-3vzj.onrender.com/api/users/register", {
         username: username,
         email: email,
         password: password,
